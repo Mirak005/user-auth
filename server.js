@@ -3,6 +3,7 @@ const passport = require("passport");
 
 const connectDb = require("./config/db");
 
+const auth = require("./routes/api/auth");
 const users = require("./routes/api/users");
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(passport.initialize());
 
 //Routes
+app.use("/api/auth", auth);
 app.use("/api/users", users);
 
 //Lunch the server

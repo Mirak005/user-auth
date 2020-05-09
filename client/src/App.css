@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.close {
+  float: right;
+  font-weight: 700;
+  color: red;
+  cursor: pointer;
+}
+
+.avatar {
+  border-radius: 50%;
+  background-color: black;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+}

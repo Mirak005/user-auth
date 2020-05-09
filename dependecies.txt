@@ -1,0 +1,37 @@
+Backend dependecies : 
+express 
+mongoose
+express-validator
+bycript
+config
+jsonwebtoken
+passeport 
+passeport-jwt
+concurrently
+nodemon (dev-dependecie)
+
+client dependecies :
+react-app 
+axios 
+
+
+-----------------------------------------------------------------------
+
+1- lunch the server (express ) 
+2-connect db (mongoose) 
+3-create Model user 
+4-register endpoint (bcrypt )
+5-login  (jwt and bcrypt)
+(express-validator for the login and register)
+6-passport-setup
+7- Private route (get all users Private Route ) 
+
+
+
+
+
+
+
+
+
+
