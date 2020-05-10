@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { logout } from "../../js/actions/authActions";
 
 import Register from "../auth/Register";
 import Login from "../auth/Login";
@@ -23,6 +25,7 @@ class AppNavbar extends Component {
   };
 
   render() {
+    const { isAuth , isLoading , user   } = this.props.auth;
     return (
       <div>
         <Navbar color="dark" dark expand="sm" className="mb-5">
@@ -31,13 +34,30 @@ class AppNavbar extends Component {
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
-                <NavItem>
-                  <Register />
-                </NavItem>
-                <NavItem>
-                  <Login />
-                </NavItem>
-               
+                {isAuth && !isLoading ? (
+                  <Fragment>
+                    <NavItem>
+                      <NavLink href="#" onClick={this.toggle}>
+                        {`Welcome ${user.name}`}
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink href="#" onClick={() => this.props.logout()}>
+                        Logout
+                      </NavLink>
+                    </NavItem>
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <NavItem>
+                      <Register />
+                    </NavItem>
+                    <NavItem>
+                      <Login />
+                    </NavItem>
+                  </Fragment>
+                )}
+
                 <NavItem>
                   <NavLink href="/">Github Link</NavLink>
                 </NavItem>
@@ -50,4 +70,8 @@ class AppNavbar extends Component {
   }
 }
 
-export default AppNavbar;
+const mapStateToProps = state => ({
+  auth: state.authReducer
+});
+
+export default connect(mapStateToProps, { logout })(AppNavbar);

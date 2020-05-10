@@ -11,7 +11,8 @@ import {
   FormGroup,
   Label,
   Input,
-  NavLink
+  NavLink,
+  Alert
 } from "reactstrap";
 
 class Login extends Component {
@@ -40,12 +41,19 @@ class Login extends Component {
   };
 
   render() {
+    const { errors, status } = this.props.errors;
+
     return (
       <div>
         <NavLink href="#" onClick={this.toggle}>
           Login
         </NavLink>
         <Modal isOpen={this.state.modalOpen} toggle={this.toggle}>
+          
+          {errors &&
+            Array.isArray(errors) &&
+            errors.map(el => <Alert color="danger"> {el} </Alert>)}
+
           <ModalHeader>Login</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
@@ -80,4 +88,8 @@ class Login extends Component {
   }
 }
 
-export default connect(null, { login, clearErrors })(Login);
+const mapStateToProps = state => ({
+  errors: state.authReducer.errors
+});
+
+export default connect(mapStateToProps, { login, clearErrors })(Login);

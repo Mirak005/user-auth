@@ -8,17 +8,17 @@ import {
   CardText
 } from "reactstrap";
 
-const UserCard = ({ name = "Karim Gharbi", email = "Karim@gmail.com" }) => {
+const UserCard = ({ user: { name, email, _id }, isAuth, authUser }) => {
   return (
     <Card className="p-3">
-      <span className="close">&times;</span>
+      {isAuth && _id === authUser._id && <span className="close">&times;</span>}
       <CardHeader className="text-center bg-white border-0">
         <span className="avatar">{name[0].toUpperCase()}</span>
       </CardHeader>
       <CardBody>
         <CardTitle>Name : {name.toUpperCase()}</CardTitle>
         <CardText>Email : {email}</CardText>
-        <Button>EDIT</Button>
+        {isAuth && _id === authUser._id && <Button>EDIT</Button>}
       </CardBody>
     </Card>
   );

@@ -40,7 +40,7 @@ const authControler = {
       });
     } catch (error) {
       console.log(error);
-      res.status(500).send({errors : ["Server error"]});//errors model [msg1 , msg2 ,...]
+      res.status(500).send({ errors: ["Server error"] }); //errors model [msg1 , msg2 ,...]
     }
   },
 
@@ -52,12 +52,12 @@ const authControler = {
       let user = await User.findOne({ email });
       //Check if user exists
       if (!user) {
-        return res.status(400).json({ errors: ["Ivalid credentials"] });//errors model [msg1 , msg2 ,...]
+        return res.status(400).json(["Ivalid credentials"]); //errors model [msg1 , msg2 ,...]
       }
       // Check the password
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
-        return res.status(400).json({ errors: ["Ivalid credentials"] });//errors model [msg1 , msg2 ,...]
+        return res.status(400).json(["Ivalid credentials"]); //errors model [msg1 , msg2 ,...]
       }
 
       //Sign in the User
@@ -78,7 +78,7 @@ const authControler = {
       });
     } catch (error) {
       console.log(error);
-      res.status(500).send({errors : ["Server error"]}); //errors model [msg1 , msg2 ,...]
+      res.status(500).send({ errors: ["Server error"] }); //errors model [msg1 , msg2 ,...]
     }
   },
   //GET CURRENT USER
@@ -87,7 +87,7 @@ const authControler = {
       console.log(req.user);
       res.send(req.user);
     } catch (error) {
-      res.status(500).send({errors : ["Server error"]});//errors model [msg1 , msg2 ,...]
+      res.status(500).send({ errors: ["Server error"] }); //errors model [msg1 , msg2 ,...]
     }
   }
 };

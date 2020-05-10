@@ -3,6 +3,7 @@ import {
   LOGIN_FAIL,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  LOGOUT,
   CLEAR_ERRORS,
   SET_LOADING,
   LOAD_USER_FAIL,
@@ -13,8 +14,8 @@ const initialState = {
   token: localStorage.getItem("token"),
   isAuth: null,
   isLoading: false,
-  user: null,
-  errors: null
+  user: {},
+  errors: {}
 };
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -41,8 +42,18 @@ export default function(state = initialState, action) {
         isAuth: false,
         errors: action.payload
       };
+    case LOGOUT:
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        token: null,
+        isAuth: null,
+        isLoading: false,
+        user: {},
+        errors: {}
+      };
     case CLEAR_ERRORS:
-      return { ...state, errors: null };
+      return { ...state, errors: {} };
     default:
       return state;
   }

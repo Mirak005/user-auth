@@ -23,7 +23,7 @@ const validator = (req, res, next) => {
   const errors = validationResult(req);
   errors.isEmpty()
     ? next()
-    : res.status(400).send({ errors: errors.array().map(err => err.msg) }); //errors model [msg1 , msg2 ,...]
+    : res.status(400).send( errors.array().map(err => err.msg) ); //errors model [msg1 , msg2 ,...]
 };
 
 module.exports = validationForms = {

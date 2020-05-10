@@ -4,6 +4,7 @@ import {
   LOGIN_FAIL,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
+  LOGOUT,
   CLEAR_ERRORS,
   SET_LOADING,
   LOAD_USER_SUCCESS,
@@ -30,13 +31,20 @@ export const login = ({ email, password }) => async dispatch => {
   }
 };
 
+//LOGOUT
+export const logout = () => dispatch => {
+  dispatch({
+    type: LOGOUT
+  });
+};
+
 //Loading User
 export const loadUser = () => async dispatch => {
   dispatch({
     type: SET_LOADING
   });
 
-  const config = configToken();
+  const config = configToken(); // return { headers : { Authi : token or null }}
 
   try {
     const res = await axios.get("/api/auth/current", config);
@@ -63,7 +71,7 @@ export const clearErrors = () => dispatch => {
 //Get token From local storage and put it in config
 
 function configToken() {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token"); // null or realToken
 
   const config = {
     headers: {
