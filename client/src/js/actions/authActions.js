@@ -70,7 +70,7 @@ export const clearErrors = () => dispatch => {
 
 //Get token From local storage and put it in config
 
-function configToken() {
+export function configToken() {
   const token = localStorage.getItem("token"); // null or realToken
 
   const config = {

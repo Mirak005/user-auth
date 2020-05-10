@@ -8,10 +8,19 @@ import {
   CardText
 } from "reactstrap";
 
-const UserCard = ({ user: { name, email, _id }, isAuth, authUser }) => {
+const UserCard = ({
+  user: { name, email, _id },
+  isAuth,
+  authUser,
+  deleteUser
+}) => {
   return (
     <Card className="p-3">
-      {isAuth && _id === authUser._id && <span className="close">&times;</span>}
+      {isAuth && _id === authUser._id && (
+        <span className="close" onClick={() => deleteUser(_id)}>
+          &times;
+        </span>
+      )}
       <CardHeader className="text-center bg-white border-0">
         <span className="avatar">{name[0].toUpperCase()}</span>
       </CardHeader>
