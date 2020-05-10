@@ -9,7 +9,7 @@ import "./App.css";
 function App(props) {
   useEffect(() => {
     props.loadUser();
-  }, []);
+  });
 
   return (
     <div>

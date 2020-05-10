@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { login } from "../../js/actions/authActions";
+import { login, clearErrors } from "../../js/actions/authActions";
 
 import {
   Button,
@@ -23,6 +23,7 @@ class Login extends Component {
 
   toggle = () => {
     //Clear Errors
+    this.props.clearErrors();
     this.setState({ modalOpen: !this.state.modalOpen });
   };
 
@@ -79,4 +80,4 @@ class Login extends Component {
   }
 }
 
-export default connect(null, { login })(Login);
+export default connect(null, { login, clearErrors })(Login);

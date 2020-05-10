@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -8,10 +14,17 @@ body {
 }
 
 .close {
-  float: right;
   font-weight: 700;
   color: red;
   cursor: pointer;
+  text-align: center;
+  width: 25px;
+  height: 27px;
+  border-radius: 50%;
+}
+.close:hover {
+  background-color: red;
+  color: white;
 }
 
 .avatar {

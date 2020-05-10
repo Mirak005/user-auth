@@ -1,4 +1,5 @@
 export const MODEL = "MODEL";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 export const SET_LOADING = "SET_LOADING";
 export const LOAD_USER_SUCCESS = "LOAD_USER_SUCCESS";

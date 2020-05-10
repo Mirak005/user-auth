@@ -4,7 +4,7 @@ import {
   LOGIN_FAIL,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
-  LOAD_USER,
+  CLEAR_ERRORS,
   SET_LOADING,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL
@@ -33,27 +33,16 @@ export const login = ({ email, password }) => async dispatch => {
 //Loading User
 export const loadUser = () => async dispatch => {
   dispatch({
-    type: LOAD_USER
+    type: SET_LOADING
   });
-  const token = localStorage.getItem("token");
-  if (!token) {
-    return dispatch({
-      type: LOAD_USER_FAIL,
-      payload: { errors: "No Token " }
-    });
-  }
 
-  const config = {
-    headers: {
-      Authorization: token
-    }
-  };
+  const config = configToken();
 
   try {
     const res = await axios.get("/api/auth/current", config);
     dispatch({
       type: LOAD_USER_SUCCESS,
-      payload: res.data // {name , email , _id  }
+      payload: res.data //   {name , email , _id  }
     });
   } catch (err) {
     dispatch({
@@ -62,3 +51,24 @@ export const loadUser = () => async dispatch => {
     });
   }
 };
+
+//Clear Errors
+
+export const clearErrors = () => dispatch => {
+  dispatch({
+    type: CLEAR_ERRORS
+  });
+};
+
+//Get token From local storage and put it in config
+
+function configToken() {
+  const token = localStorage.getItem("token");
+
+  const config = {
+    headers: {
+      Authorization: token
+    }
+  };
+  return config;
+}
