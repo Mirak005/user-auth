@@ -10,7 +10,7 @@ const UsersList = ({users : { usersList, isLoading } , isAuth , authUser ,delete
       {!isLoading && usersList ? (
         <Row>
           {usersList.map(el => (
-            <Col key={el.id} xs="12" md="6" lg="4" className="mb-3">
+            <Col key={el.id} xs="12" md="6" lg="4" className="mb-3 justify-content-stretch">
               <UserCard user={el} isAuth={isAuth} authUser={authUser} deleteUser={deleteUser} />
             </Col>
           ))}

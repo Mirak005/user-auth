@@ -15,13 +15,13 @@ const UserCard = ({
   deleteUser
 }) => {
   return (
-    <Card className="p-3">
-      {isAuth && _id === authUser._id && (
-        <span className="close" onClick={() => deleteUser(_id)}>
-          &times;
-        </span>
-      )}
+    <Card className="p-2 h-100">
       <CardHeader className="text-center bg-white border-0">
+        {isAuth && _id === authUser._id && (
+          <span className="close" onClick={() => deleteUser(_id)}>
+            &times;
+          </span>
+        )}
         <span className="avatar">{name[0].toUpperCase()}</span>
       </CardHeader>
       <CardBody>

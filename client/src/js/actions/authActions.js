@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getUsers } from "./userActions";
 import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
@@ -30,18 +31,23 @@ export const login = ({ email, password }) => async dispatch => {
     });
   }
 };
-//Register User 
-export const register = ({name , email, password }) => async dispatch => {
+//Register User
+export const register = ({ name, email, password }) => async dispatch => {
   dispatch({
     type: SET_LOADING
   });
 
   try {
-    const res = await axios.post("/api/auth/register", { email, password,name});
+    const res = await axios.post("/api/auth/register", {
+      email,
+      password,
+      name
+    });
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data
     });
+    dispatch(getUsers());
   } catch (err) {
     dispatch({
       type: REGISTER_FAIL,
