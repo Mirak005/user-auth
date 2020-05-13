@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { register } from "../../js/actions/authActions";
 
 import {
   Button,
@@ -17,8 +19,7 @@ class RegisterModal extends Component {
     modalOpen: false,
     name: "",
     email: "",
-    password: "",
-    msg: null
+    password: ""
   };
 
   toggle = () => {
@@ -29,6 +30,13 @@ class RegisterModal extends Component {
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
+  onSubmit = e => {
+    e.preventDefault();
+    const { name, email, password } = this.state;
+    this.props.register({ name, email, password });
+  };
+
   render() {
     return (
       <div>
@@ -38,9 +46,7 @@ class RegisterModal extends Component {
         <Modal isOpen={this.state.modalOpen} toggle={this.toggle}>
           <ModalHeader>Register</ModalHeader>
           <ModalBody>
-            <Form
-            //  onSubmit={this.onSubmit}
-            >
+            <Form onSubmit={this.onSubmit}>
               <FormGroup>
                 <Label for="name">Name </Label>
                 <Input
@@ -81,4 +87,4 @@ class RegisterModal extends Component {
   }
 }
 
-export default RegisterModal;
+export default connect(null, { register })(RegisterModal);

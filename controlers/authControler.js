@@ -27,16 +27,19 @@ const authControler = {
 
       //Sign in the User
       const payload = {
-        user: {
-          id: user._id,
-          name: user.name,
-          email: user.email
-        }
+        id: user._id
       };
 
       jwt.sign(payload, secret, (err, token) => {
         if (err) throw err;
-        res.json({ token: `Bearer ${token}` });
+        res.json({
+          token: `Bearer ${token}`,
+          user: {
+            name: user.name,
+            email: user.email,
+            _id: user._id
+          }
+        });
       });
     } catch (error) {
       console.log(error);
@@ -87,6 +90,7 @@ const authControler = {
       console.log(req.user);
       res.send(req.user);
     } catch (error) {
+      console.log(error);
       res.status(500).send({ errors: ["Server error"] }); //errors model [msg1 , msg2 ,...]
     }
   }

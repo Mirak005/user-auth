@@ -41,7 +41,7 @@ class Login extends Component {
   };
 
   render() {
-    const { errors, status } = this.props.errors;
+    const { errors } = this.props.errors;
 
     return (
       <div>

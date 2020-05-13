@@ -8,11 +8,11 @@ import UsersList from "./components/layout/UsersList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-function App(props) {
+function App({ getUsers, loadUser }) {
   useEffect(() => {
-    props.getUsers();
-    props.loadUser();
-  });
+    getUsers();
+    loadUser();
+  }, [getUsers,loadUser]);
 
   return (
     <div>
@@ -22,4 +22,4 @@ function App(props) {
   );
 }
 
-export default connect(null, { loadUser , getUsers })(App);
+export default connect(null, { loadUser, getUsers })(App);
