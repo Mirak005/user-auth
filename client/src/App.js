@@ -10,14 +10,14 @@ import "./App.css";
 
 function App({ getUsers, loadUser }) {
   useEffect(() => {
-    getUsers();
+    getUsers(1);
     loadUser();
-  }, [getUsers,loadUser]);
+  }, [getUsers, loadUser]);
 
   return (
     <div>
       <AppNavBar />
-      <UsersList />
+      <UsersList getUsers={getUsers} />
     </div>
   );
 }

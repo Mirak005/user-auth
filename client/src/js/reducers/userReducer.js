@@ -2,24 +2,32 @@ import {
   GET_USERS,
   LOAD_USERS_SUCCESS,
   LOADING_USERS_FAIL,
-  DELETE_USER
+  DELETE_USER,
 } from "../const/actionTypes";
 
 const initialState = {
   usersList: [],
-  isLoading: false
+  isLoading: false,
+  pages: 1,
 };
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case GET_USERS:
       return { ...state, isLoading: true };
     case DELETE_USER:
       return {
         ...state,
-        usersList: state.usersList.filter(user => user._id !== action.payload)
+        usersList: state.usersList.filter(
+          (user) => user._id !== action.payload
+        ),
       };
     case LOAD_USERS_SUCCESS:
-      return { ...state, isLoading: false, usersList: action.payload };
+      return {
+        ...state,
+        isLoading: false,
+        usersList: action.payload.users,
+        pages: action.payload.n_pages,
+      };
     default:
       return state;
   }
