@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://mirak005:mirak005@dev-connector-exercice.qo19f.mongodb.net/ws-auth?retryWrites=true&w=majority",
+  "mongoURI": "",
   "secretOrKey":"MytopSecret"
 }
