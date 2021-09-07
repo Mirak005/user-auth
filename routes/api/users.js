@@ -5,13 +5,13 @@ const router = express.Router();
 const {
   getAllUsers,
   deleteUserById,
-  editUserById
+  editUserById,
 } = require("../../controlers/usersControler");
 
 //@route GET api/users
 //@desc  GET ALL USERES
 //@acess Public
-router.get("/", getAllUsers);
+router.get("/:page?", getAllUsers);
 
 //@route delete api/users
 //@desc  delete ALL USERES

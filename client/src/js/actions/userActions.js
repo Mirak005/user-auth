@@ -4,19 +4,19 @@ import {
   GET_USERS,
   LOADING_USERS_FAIL,
   LOAD_USERS_SUCCESS,
-  DELETE_USER
+  DELETE_USER,
 } from "../const/actionTypes";
 
 //Get USERS
-export const getUsers = () => async dispatch => {
+export const getUsers = (page_number) => async (dispatch) => {
   dispatch({
-    type: GET_USERS
+    type: GET_USERS,
   });
   try {
-    const res = await axios.get("/api/users/");
+    const res = await axios.get("/api/users/?page=" + page_number);
     dispatch({
       type: LOAD_USERS_SUCCESS,
-      payload: res.data
+      payload: res.data,
     });
   } catch (error) {
     console.log(error.response);
@@ -24,13 +24,13 @@ export const getUsers = () => async dispatch => {
 };
 
 //DELETE USER
-export const deleteUser = id => async dispatch => {
+export const deleteUser = (id) => async (dispatch) => {
   const config = configToken();
   try {
     await axios.delete(`/api/users/${id}`, config);
     dispatch({
       type: DELETE_USER,
-      payload: id
+      payload: id,
     });
   } catch (error) {
     alert(error.response.data);
